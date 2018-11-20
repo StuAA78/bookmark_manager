@@ -1,8 +1,8 @@
 # bookmark_manager
 # User stories
 
-![domain model](https://raw.github.com/GDSNewt/bookmark_manager/blob/master/images/bookmark_mgr%20domain%20model.png)
 
+![domain model](/bookmark_manager/images/bookmark_mgr domain model.png)
 
 As a User
 So that I can easily locate pages I want to find again
