@@ -4,12 +4,7 @@ class Bookmark
 
   def self.all
     array = []
-    if ENV['RACK_ENV'] == 'test'
-      db = 'bookmark_manager_test'
-    else
-      db = 'bookmark_manager'
-    end
-      conn = PG.connect( dbname: db )
+    conn = PG.connect( dbname: environment? )
     conn.exec("SELECT * FROM bookmarks") do |result|
       result.each do |row|
         array << row.values_at('url').first
@@ -19,4 +14,16 @@ class Bookmark
     array
 
   end
+
+  def self.create(url)
+    conn = PG.connect( dbname: environment? )
+    conn.exec("INSERT INTO bookmarks (url) VALUES('#{url}')")
+  end
+
+  private
+
+  def self.environment?
+    ENV['RACK_ENV'] == 'test' ? 'bookmark_manager_test' : 'bookmark_manager'
+  end
+
 end
