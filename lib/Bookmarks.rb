@@ -15,6 +15,17 @@ class Bookmark
 
   end
 
+  def self.retrieve_bookmark(id)
+    conn = PG.connect( dbname: environment? )
+    conn.exec("SELECT * FROM bookmarks WHERE id = #{id}").first
+  end
+
+  def self.update_bookmark(id, url, title)
+    conn = PG.connect( dbname: environment? )
+    conn.exec("UPDATE bookmarks SET url = '#{url}', title = '#{title}' WHERE id = #{id}")
+  end
+
+
   def self.create(url, title)
     conn = PG.connect( dbname: environment? )
     conn.exec("INSERT INTO bookmarks (url, title) VALUES('#{url}', '#{title}')")

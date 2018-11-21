@@ -23,6 +23,20 @@ get '/added_bookmark' do
   erb :added_bookmark
 end
 
+get '/:id/update' do
+  id = params[:id]
+  @bookmark = Bookmark.retrieve_bookmark(id)
+  erb :update
+end
+
+patch '/:id/update' do
+  id = params[:id]
+  url = params['url']
+  title = params['title']
+  Bookmark.update_bookmark(id, url, title)
+  redirect '/bookmarks'
+end
+
 delete '/:id/delete' do
 	id = params[:id]
 	Bookmark.delete(id)

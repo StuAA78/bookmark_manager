@@ -1,0 +1,16 @@
+<% id = @bookmark['id'] %>
+<% url = @bookmark['url'] %>
+<% title = @bookmark['title'] %>
+<% p id %>
+<form action="/<%= id %>/update" method="post">
+  <input id="hidden" type="hidden" name="_method" value="patch">
+  <label for="url">
+    URL
+    <input type="text" name="url" value="<%= url %>">
+  </label>
+  <label for="title">
+    Title
+    <input type="text" name="title" value="<%= title %>">
+  </label>
+  <input type="submit" value="Submit">
+</form>
