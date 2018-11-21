@@ -14,7 +14,8 @@ end
 
 post '/add_bookmark' do
   url = params['New bookmark']
-  Bookmark.create(url)
+  title = params['title']
+  Bookmark.create(url, title)
   redirect '/added_bookmark'
 end
 

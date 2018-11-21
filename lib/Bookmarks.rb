@@ -7,7 +7,7 @@ class Bookmark
     conn = PG.connect( dbname: environment? )
     conn.exec("SELECT * FROM bookmarks") do |result|
       result.each do |row|
-        array << row.values_at('url').first
+        array << row
       end
     end
 
@@ -15,9 +15,9 @@ class Bookmark
 
   end
 
-  def self.create(url)
+  def self.create(url, title)
     conn = PG.connect( dbname: environment? )
-    conn.exec("INSERT INTO bookmarks (url) VALUES('#{url}')")
+    conn.exec("INSERT INTO bookmarks (url, title) VALUES('#{url}', '#{title}')")
   end
 
   private

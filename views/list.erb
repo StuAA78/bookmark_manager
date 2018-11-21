@@ -2,6 +2,8 @@
 
 <ul>
   <%  @bookmarks.each do |bookmark| %>
-  <<li><%= bookmark %> </li>
+  <% url = bookmark["url"] %>
+  <% title = bookmark["title"] %>
+  <li><a href="<%= url %>"><%= title %></a>
   <% end %>
 </ul>
