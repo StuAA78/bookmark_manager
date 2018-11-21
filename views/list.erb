@@ -4,6 +4,11 @@
   <%  @bookmarks.each do |bookmark| %>
   <% url = bookmark["url"] %>
   <% title = bookmark["title"] %>
+  <% id = bookmark["id"] %>
   <li><a href="<%= url %>"><%= title %></a>
+  <form action="/<%= id %>/delete" method="post">
+  	<input id="hidden" type="hidden" name="_method" value="delete">
+  	<input type="submit" name="delete" value="delete">
+  </form>
   <% end %>
 </ul>

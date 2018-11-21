@@ -20,6 +20,11 @@ class Bookmark
     conn.exec("INSERT INTO bookmarks (url, title) VALUES('#{url}', '#{title}')")
   end
 
+  def self.delete(id)
+    conn = PG.connect( dbname: environment? )
+    conn.exec("DELETE FROM bookmarks WHERE id = #{id}")
+  end
+
   private
 
   def self.environment?

@@ -16,13 +16,18 @@ post '/add_bookmark' do
   url = params['New bookmark']
   title = params['title']
   Bookmark.create(url, title)
-  redirect '/added_bookmark'
+  redirect '/bookmarks'
 end
 
 get '/added_bookmark' do
   erb :added_bookmark
 end
 
+delete '/:id/delete' do
+	id = params[:id]
+	Bookmark.delete(id)
+	redirect('/bookmarks')
+end
 
   run! if app_file == $0
 end
